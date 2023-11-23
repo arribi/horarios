@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 
 class ModuloController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
@@ -47,10 +48,6 @@ class ModuloController extends Controller
      */
     public function show(Modulo $modulo)
     {
-        if (!$modulo) {
-            return response()->json(['message' => 'El módulo con el id ' . $modulo->id . ' no existe'], 404);
-        }
-
         return new ModuloResource($modulo);
     }
 
@@ -59,13 +56,8 @@ class ModuloController extends Controller
      */
     public function update(Request $request, Modulo $modulo)
     {
-        if (!$modulo) {
-            return response()->json(['message' => 'El módulo con el id ' . $modulo->id . ' no existe'], 404);
-        }
-
         $data = $request->all();
 
-        // Validar los datos
         $validator = Validator::make($data, [
             'codigo' => 'required|string|max:255',
             'materia' => 'required|string|max:255',
@@ -89,12 +81,7 @@ class ModuloController extends Controller
      */
     public function destroy(Modulo $modulo)
     {
-        try {
-            // Eliminar el módulo de la base de datos
-            $modulo->delete();
-        } catch (ModelNotFoundException $e) {
-            return response()->json(['message' => 'El módulo con el id ' . $modulo->id . ' no existe'], 404);
-        }
+        $modulo->delete();
 
         return response()->json(['message' => 'El módulo se ha eliminado correctamente'], 204);
     }

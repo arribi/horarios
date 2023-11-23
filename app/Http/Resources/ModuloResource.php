@@ -25,8 +25,8 @@ class ModuloResource extends JsonResource
             'user_id' => $this->user_id,
             'especialidad_id' => $this->especialidad_id,
             'estudio_id' => $this->estudio_id,
-            'created_at' => $this->created_at->format('Y-m-d H:i:s'),
-            'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
+            // 'created_at' => $this->created_at->format('Y-m-d H:i:s'),
+            // 'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
         ];
     }
 }

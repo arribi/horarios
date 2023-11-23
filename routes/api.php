@@ -28,5 +28,7 @@ Route::controller(AuthController::class)->group(function () {
 
 
 Route::prefix('v1')->middleware('auth:sanctum')->group(function () {
-    Route::apiResource('modulos', ModuloController::class);
+    Route::apiResource('modulos', ModuloController::class)->missing(function () {
+        return response()->json(['message' => 'El módulo no existe'], 404);
+    });
 });
