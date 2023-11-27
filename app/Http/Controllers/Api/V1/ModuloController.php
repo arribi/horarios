@@ -20,7 +20,7 @@ class ModuloController extends Controller
     {
         // request()->exists('modulos')
         //Módulos de una especialidad
-        $modulos = $especialidad ? $especialidad->modulos : Modulo::all();
+        $modulos = $especialidad ? $especialidad->modulos : Modulo::paginate(1);
 
         return ModuloResource::collection($modulos);
     }

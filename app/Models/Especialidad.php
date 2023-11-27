@@ -10,6 +10,7 @@ class Especialidad extends Model
 {
     use HasFactory;
 
+    //Distinto a la nomenclatura de Laravel
     protected $table = 'especialidades';
 
     protected $fillable = [

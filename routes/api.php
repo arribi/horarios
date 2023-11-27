@@ -29,13 +29,16 @@ Route::controller(AuthController::class)->group(function () {
 
 
 Route::prefix('v1')->middleware('auth:sanctum')->group(function () {
-    Route::apiResource('modulos', ModuloController::class)->missing(function () {
-        return response()->json(['message' => 'El módulo no existe'], 404);
-    });
-    Route::get('especialidades/{especialidad}', [EspecialidadController::class, 'show'])->missing(function () {
-        return response()->json(['message' => 'La especialidad no existe'], 404);
-    });
-    Route::get('especialidades/{especialidad}/modulos', [ModuloController::class, 'index'])->missing(function () {
-        return response()->json(['message' => 'La especialidad no existe'], 404);
-    });
+    Route::apiResource('modulos', ModuloController::class)
+        ->missing(function () {
+            return response()->json(['message' => 'El módulo no existe'], 404);
+        });
+    Route::get('especialidades/{especialidad}', [EspecialidadController::class, 'show'])
+        ->missing(function () {
+            return response()->json(['message' => 'La especialidad no existe'], 404);
+        });
+    Route::get('especialidades/{especialidad}/modulos', [ModuloController::class, 'index'])
+        ->missing(function () {
+            return response()->json(['message' => 'La especialidad no existe'], 404);
+        });
 });
