@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ModuloResource;
+use App\Models\Especialidad;
 use App\Models\Modulo;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
 
@@ -16,9 +16,11 @@ class ModuloController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Especialidad $especialidad = null)
     {
-        $modulos = Modulo::all();
+        // request()->exists('modulos')
+        //Módulos de una especialidad
+        $modulos = $especialidad ? $especialidad->modulos : Modulo::all();
 
         return ModuloResource::collection($modulos);
     }
