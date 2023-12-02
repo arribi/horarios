@@ -55,6 +55,8 @@ class ModuloController extends Controller
 
     /**
      * Update the specified resource in storage.
+     *      
+     *  Checked if a module does not exists in api.php with missing()
      */
     public function update(Request $request, Modulo $modulo)
     {
@@ -80,6 +82,7 @@ class ModuloController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     * Checked if a module does not exists in api.php with missing()
      */
     public function destroy(Modulo $modulo)
     {
