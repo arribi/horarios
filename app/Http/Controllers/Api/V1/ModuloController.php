@@ -18,10 +18,11 @@ class ModuloController extends Controller
      */
     public function index(Especialidad $especialidad = null)
     {
-        // request()->exists('modulos')
-        //Módulos de una especialidad
-        $modulos = $especialidad ? $especialidad->modulos : Modulo::paginate(1);
-
+        //Módulos de una especialidad o todos los módulos
+        $modulos = $especialidad ? $especialidad->modulos : Modulo::paginate(5);
+        if ($modulos->isEmpty()) {
+            return response()->json(['message' => 'No hay módulos disponibles'], 404);
+        }
         return ModuloResource::collection($modulos);
     }
 
